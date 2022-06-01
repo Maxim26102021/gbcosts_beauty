@@ -1,6 +1,10 @@
 .page-link {
-    color: #019281;
+    color: #000;
+}
+.page-link:focus {
+    color: black;
+    box-shadow: 0 0 0 0.25rem #019281;
 }
 .page-link:hover {
-    color: #fff;
+    color: #000;
 }

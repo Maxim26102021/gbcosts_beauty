@@ -7,9 +7,9 @@
       <div :class='$style.el'>Value</div>
     </div>
     <div :class='$style.row'
-         v-for='(item, i) in data'
+         v-for='(item, i) in getCostsOnPage'
          :key='i'>
-      <div :class='$style.row__element'>{{ item.order }}</div>
+      <div :class='$style.row__element'>{{ item.id }}</div>
       <div :class='$style.row__element'>{{ item.date }}</div>
       <div :class='$style.row__element'>{{ item.description }}</div>
       <div :class='$style.row__element'>{{ item.amount }}</div>
@@ -20,21 +20,11 @@
 <script>
 export default {
   name: 'TableComponent',
-  props: {
-    dataArr: {
-      type: Array
+  computed: {
+    getCostsOnPage() {
+      return this.$store.getters.getItems
     }
   },
-  data() {
-    return {
-      data: ''
-    };
-  },
-  watch: {
-    dataArr: function(newVal) {
-      this.data = newVal;
-    }
-  }
 };
 </script>
 

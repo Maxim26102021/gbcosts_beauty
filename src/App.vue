@@ -1,10 +1,14 @@
 <template>
   <div id='app'>
-    <h2>My personal costs</h2>
-    <ButtonComponent @my-event='showForm = !showForm' :text='btnText' />
-    <TableComponent :dataArr='formData' />
-    <PaginationComponent v-if='formData.length' :costsData='formData' />
-    <FormComponent v-show='showForm' @my-event='handleData' />
+    <header>
+      <h2>My personal costs</h2>
+    </header>
+    <main>
+      <ButtonComponent @my-event='showForm = !showForm' :text='btnText' />
+      <TableComponent />
+      <PaginationComponent v-if='this.$store.state.allCosts.length'/>
+      <FormComponent v-show='showForm' />
+    </main>
   </div>
 </template>
 
@@ -31,11 +35,14 @@ export default {
     };
   },
   methods: {
-    handleData({ ...data }) {
-/*      let bottomPoint = 4;*/
-      data.order = this.formData.length + 1;
-      this.formData.push(data);
+    fetchData() {
+      this.$store.dispatch({
+        type: 'fetchData',
+      })
     }
+  },
+  created() {
+    this.fetchData()
   }
 
 };

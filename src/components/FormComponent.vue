@@ -7,7 +7,7 @@
 
       <input type='date' :class='$style.form__input' v-model='formData.date' placeholder='Payment date'>
     </div>
-    <ButtonComponent @my-event='$emit("my-event", formData)' :text='btnText'/>
+    <ButtonComponent @my-event='addCost' :text='btnText'/>
   </form>
 </template>
 
@@ -24,17 +24,20 @@ export default {
         date: ''
       },
       btnText: 'ADD',
-      event: 'send-data'
     }
   },
   components: {
     ButtonComponent
   },
   methods: {
-    caller() {
-      console.log(1)
+    addCost() {
+      let newCost = {};
+
+      Object.assign(newCost, this.formData)
+
+      this.$store.commit('setCost', newCost)
     }
-  }
+  },
 };
 </script>
 
