@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 
 import data from './data';
 import form from './modules/form';
+import costs from './modules/costs';
 
 Vue.use(Vuex);
 
@@ -33,15 +34,19 @@ export default new Vuex.Store({
 
       let newArr = state.allCosts.slice(((number - 1) * state.count), state.count * number);
       state.pageItems = newArr;
+    },
+    setClearData(state) {
+      state.allCosts = []
     }
   },
   actions: {
-    fetchData({ commit }) {
-      commit('setData', data);
+     fetchData({ commit }) {
+       commit('setData', data);
     }
   },
   modules: {
-    form
+    form,
+    costs
   }
 });
 

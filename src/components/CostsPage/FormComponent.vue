@@ -7,24 +7,23 @@
 
       <input type='date' :class='$style.form__input' v-model='formData.date' placeholder='Payment date'>
     </div>
-    <ButtonComponent @my-event='addCost' :text='btnText'/>
+    <ButtonComponent @my-event='addCost' :text='getBT' />
   </form>
 </template>
 
 <script>
-import ButtonComponent from '@/components/ButtonComponent';
+import ButtonComponent from '@/components/CostsPage/ButtonComponent';
 
 export default {
   name: 'FormComponent',
-  data () {
+  data() {
     return {
       formData: {
         description: '',
         amount: '',
         date: ''
       },
-      btnText: 'ADD',
-    }
+    };
   },
   components: {
     ButtonComponent
@@ -33,11 +32,16 @@ export default {
     addCost() {
       let newCost = {};
 
-      Object.assign(newCost, this.formData)
+      Object.assign(newCost, this.formData);
 
-      this.$store.commit('setCost', newCost)
+      this.$store.commit('form/setCost', newCost);
     }
   },
+  computed: {
+    getBT() {
+      return this.$store.getters['form/getBtnText'];
+    }
+  }
 };
 </script>
 
@@ -57,6 +61,7 @@ export default {
     border-radius: 2px;
     color: #fff;
     cursor: pointer;
+
     &:after {
       content: '+';
       position: absolute;
@@ -77,13 +82,16 @@ export default {
     -webkit-box-shadow: 0px 4px 6px 1px rgba(0, 0, 0, 0.07);
     -moz-box-shadow: 0px 4px 6px 1px rgba(0, 0, 0, 0.07);
     box-shadow: 0px 4px 6px 1px rgba(0, 0, 0, 0.07);
+
     &::placeholder {
       color: #cbcccb;
       font-size: 14px;
     }
+
     &:focus {
       outline: none;
     }
+
     &:nth-child(n) {
       margin-bottom: 4px;
     }

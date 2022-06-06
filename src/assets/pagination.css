@@ -3,7 +3,7 @@
 }
 .page-link:focus {
     color: black;
-    box-shadow: 0 0 0 0.25rem #019281;
+    box-shadow: 0 0 0 0.25rem rgb(0%, 57%, 51%, 0.3);;
 }
 .page-link:hover {
     color: #000;
