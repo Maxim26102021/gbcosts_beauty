@@ -30,42 +30,44 @@ export default {
   name: 'PaginationComponent',
   data() {
     return {
-      currentNumber: 1
+      startNumber: 1,
+      elOnPage: 5
     };
   },
   methods: {
     showPage(number) {
-      if (number < 1) return;
-      if (number > (Math.ceil(this.$store.state.allCosts.length / this.$store.state.count))) return;
-      this.currentNumber = number;
+      if (number < 1 || number > (Math.ceil(this.getAllCosts.length / this.elOnPage))) return;
+
+      this.startNumber = number;
       this.$store.commit('setCostsPage', number);
     },
     controlAction(event) {
       if (!event.target.classList.contains('control')) return;
 
       if (event.target.classList.contains('previous')) {
-        this.showPage(this.currentNumber - 1);
+        this.showPage(this.startNumber - 1);
         return;
       }
       if (event.target.classList.contains('next')) {
-        this.showPage(this.currentNumber + 1);
+        this.showPage(this.startNumber + 1);
         return;
       }
     }
   },
   computed: {
     ...mapGetters([
-      'getLength'
+      'getLength',
+      'getAllCosts'
     ]),
     pagesCount: function() {
-      return Math.ceil(this.$store.getters.getAllCosts.length / this.getLength);
+      return Math.ceil(this.getAllCosts.length / this.getLength);
     }
   },
   beforeUpdate() {
-    this.showPage(this.currentNumber);
+    this.showPage(this.startNumber);
   },
   mounted() {
-    this.showPage(this.currentNumber);
+    this.showPage(this.startNumber);
   }
 };
 </script>
@@ -78,6 +80,7 @@ export default {
   justify-content: center;
   height: 38px;
 }
+
 .current {
   color: red;
   font-size: 20px;

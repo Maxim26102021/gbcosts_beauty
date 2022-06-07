@@ -7,7 +7,7 @@
 
       <input type='date' :class='$style.form__input' v-model='formData.date' placeholder='Payment date'>
     </div>
-    <ButtonComponent @my-event='addCost' :text='getBT' />
+    <ButtonComponent @my-event='addCost' :text='"ADD"' />
   </form>
 </template>
 
@@ -37,11 +37,6 @@ export default {
       this.$store.commit('form/setCost', newCost);
     }
   },
-  computed: {
-    getBT() {
-      return this.$store.getters['form/getBtnText'];
-    }
-  }
 };
 </script>
 

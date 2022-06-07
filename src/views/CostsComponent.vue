@@ -4,7 +4,7 @@
       <h2>My personal costs</h2>
     </header>
     <main>
-      <ButtonComponent @my-event='showForm = !showForm' :text='getBT' />
+      <ButtonComponent @my-event='showForm = !showForm' :text='"ADD NEW COST"' />
       <TableComponent />
       <PaginationComponent v-if='getAC' />
       <FormComponent v-show='showForm' />
@@ -16,17 +16,7 @@
 import ButtonComponent from '@/components/CostsPage/ButtonComponent';
 import FormComponent from '@/components/CostsPage/FormComponent';
 import TableComponent from '@/components/CostsPage/TableComponent';
-
 const { DateTime } = require('luxon');
-
-class Item {
-  constructor(description, value) {
-    this.description = description;
-    this.amount = value;
-    this.date = DateTime.now().toLocaleString();
-  }
-}
-
 
 export default {
   name: 'CostsComponent',
@@ -38,7 +28,8 @@ export default {
   },
   data() {
     return {
-      showForm: false
+      showForm: false,
+      newItem: {}
     };
   },
   computed: {
@@ -52,15 +43,18 @@ export default {
   mounted() {
     if (!this.$route.params.category) return;
 
-    let query,
-      newItem;
+    let query;
 
     if (!this.$route.query.value) query = '';
     else query = this.$route.query.value;
 
-    newItem = new Item(this.$route.params.category, query);
+    this.newItem = {
+      description: this.$route.params.category,
+      amount: query,
+      date: DateTime.now().toLocaleString(),
+    }
 
-    this.$store.commit('form/setCost', newItem);
+    this.$store.commit('form/setCost', this.newItem);
   }
 };
 </script>

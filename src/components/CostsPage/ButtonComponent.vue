@@ -7,7 +7,8 @@ export default {
   name: 'ButtonComponent',
   props: {
     text: {
-      type: String
+      type: String,
+      default:() => ('none')
     }
   }
 };
