@@ -8,7 +8,7 @@ export default {
   props: {
     text: {
       type: String,
-      default:() => ('none')
+      default: () => ('none')
     }
   }
 };
@@ -18,7 +18,6 @@ export default {
 .action {
   margin-bottom: 10px;
   position: relative;
-  padding: 5px;
   width: 50%;
   align-self: end;
   background-color: #019281;
@@ -26,6 +25,7 @@ export default {
   border-radius: 2px;
   color: #fff;
   cursor: pointer;
+  padding: 5px 17px 5px 5px;
 
   &:after {
     content: '+';

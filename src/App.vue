@@ -5,7 +5,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'App',
   methods: {
@@ -16,22 +15,21 @@ export default {
     }
   },
   created() {
+    console.log(this.$change);
     this.fetchData();
   }
-
 };
 </script>
 
 <style lang='scss'>
 @import "../node_modules/bootstrap/scss/bootstrap";
-@import '../node_modules/normalize.css/normalize.css';
-@import url('https://fonts.googleapis.com/css2?family=Neonderthaw&family=Roboto:wght@100;300&display=swap');
-@import "~vue-tabulator/dist/scss/bootstrap/tabulator_bootstrap4";
-@import 'assets/pagination.css';
+@import "../node_modules/normalize.css/normalize.css";
+@import url("https://fonts.googleapis.com/css2?family=Neonderthaw&family=Roboto:wght@100;300&display=swap");
+@import "assets/pagination.css";
 
 @media (max-width: 1140px) {
   #app {
-    width: 50%;
+    width: 80%;
   }
 }
 
@@ -54,7 +52,7 @@ export default {
 }
 
 * {
-  font-family: 'Roboto';
+  font-family: "Roboto";
 }
 
 #app {
@@ -65,7 +63,4 @@ export default {
 #app:nth-child(n) {
   margin-bottom: 10px;
 }
-
-
-
 </style>

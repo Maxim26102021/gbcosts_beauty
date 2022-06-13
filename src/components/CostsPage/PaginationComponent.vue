@@ -3,7 +3,7 @@
     <nav aria-label='Page navigation example'>
       <ul class='pagination'>
         <li class='page-item '>
-          <a @click='controlAction($event)' class='page-link previous control' href='#' aria-label='Previous'>
+          <a @click='doAction($event)' class='page-link previous control' href='#' aria-label='Previous'>
             <span class='control previous' aria-hidden='true'>&laquo;</span>
           </a>
         </li>
@@ -14,7 +14,7 @@
           <a class='page-link' href='#'>{{ item }}</a>
         </li>
         <li class='page-item'>
-          <a @click='controlAction($event)' class='page-link  next control' href='#' aria-label='Next'>
+          <a @click='doAction($event)' class='page-link  next control' href='#' aria-label='Next'>
             <span class='control next' aria-hidden='true'>&raquo;</span>
           </a>
         </li>
@@ -41,7 +41,7 @@ export default {
       this.startNumber = number;
       this.$store.commit('setCostsPage', number);
     },
-    controlAction(event) {
+    doAction(event) {
       if (!event.target.classList.contains('control')) return;
 
       if (event.target.classList.contains('previous')) {
